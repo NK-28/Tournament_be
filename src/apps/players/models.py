@@ -1,11 +1,9 @@
-import uuid
 from django.db import models
-
-from apps.tournament.models import Tournament
 
 
 class Player(models.Model):
-    player_id = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    player_id = models.AutoField(primary_key=True)
     player_name = models.CharField(max_length=250)
-    tournaments = models.ManyToManyField(Tournament)
 
+    def __str__(self):
+        return f'{self.player_name}'
