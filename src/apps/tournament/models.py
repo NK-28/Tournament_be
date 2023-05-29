@@ -8,7 +8,7 @@ class Tournament(models.Model):
         ]
 
     tournament_id = models.AutoField(primary_key=True)
-    title = models.CharField(max_length=200)
+    title = models.CharField(unique=True, max_length=200)
     tournament_type = models.CharField(max_length=200, choices=TournamentType, blank=False)
     players_number = models.SmallIntegerField()
     players = models.ManyToManyField(Player, related_name='tournaments')
