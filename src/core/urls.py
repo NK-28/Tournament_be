@@ -7,10 +7,11 @@ from apps.tournament.views import TournamentViewSet
 router = routers.DefaultRouter()
 
 
-
 router.register(r'tournaments', TournamentViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('v1/', include(router.urls)),
+    path('auth/', include('djoser.urls')),
+    path('auth/', include('djoser.urls.jwt')),
+    path('api/v1/', include(router.urls)),
 ]

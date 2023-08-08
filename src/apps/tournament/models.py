@@ -1,9 +1,10 @@
 from django.db import models
 from apps.players.models import Player
 
+
 class Tournament(models.Model):
     TournamentType = [
-        ('K.O.','Knockout'),
+        ('K.O.', 'Knockout'),
         ('group', 'Group')
         ]
 
