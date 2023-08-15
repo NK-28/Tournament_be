@@ -1,0 +1,17 @@
+<!-- templates/tournament_app/create_match.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Match</title>
+</head>
+<body>
+    <h1>Create Match</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Create Match</button>
+    </form>
+</body>
+</html>

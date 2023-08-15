@@ -1,13 +1,9 @@
-from django.shortcuts import get_object_or_404
-from rest_framework import viewsets, filters
+from rest_framework import viewsets
 
-
-from .models import Tournament
-from .serializers import TournamentSerializer
+from .models import Tournament, PlayerTournamentScore
+from .serializers import TournamentSerializer, PlayerTournamentScoreSerializer
 
 
 class TournamentViewSet(viewsets.ModelViewSet):
     queryset = Tournament.objects.all()
     serializer_class = TournamentSerializer
-    filter_backends = (filters.SearchFilter,)
-    search_fields = ('title',)

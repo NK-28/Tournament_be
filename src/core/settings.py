@@ -27,10 +27,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'rest_framework.authtoken',
     'djoser',
     'apps.users.apps.UsersConfig',
     'apps.players.apps.PlayersConfig',
+    'apps.game.apps.GameConfig',
+    'apps.match.apps.MatchConfig',
     'apps.tournament.apps.TournamentConfig',
 
 ]

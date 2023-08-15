@@ -1,25 +1,25 @@
 from django.contrib import admin
 
-from .models import Tournament
-from apps.players.models import Player
+from .models import Tournament, PlayerTournamentScore
+from apps.match.models import Match
 
 
-class PlayerInline(admin.TabularInline):
-    model = Player.tournaments.through
+class PlayerTournamentScoreInline(admin.TabularInline):
+    model = PlayerTournamentScore
+
+
+class GameInline(admin.TabularInline):
+    model = Tournament.games.through
+
+
+class MatchInline(admin.TabularInline):
+    model = Match
 
 
 @admin.register(Tournament)
 class TournamentAdmin(admin.ModelAdmin):
-    # Перечисляем поля, которые должны отображаться в админке
-    list_display = ('title', 'tournament_type', 'players_number', 'pub_date') 
-    # Добавляем интерфейс для поиска по тексту постов
-    search_fields = ('title',) 
-    # Добавляем возможность фильтрации по дате
-    list_filter = ('pub_date',) 
-    # Добавляем поле players (many to many)
-    inlines = (PlayerInline,)
-
-# При регистрации модели Post источником конфигурации для неё назначаем
-# класс TournamentAdmin
-
-
+    inlines = [
+        GameInline,
+        PlayerTournamentScoreInline,
+        MatchInline,
+    ]

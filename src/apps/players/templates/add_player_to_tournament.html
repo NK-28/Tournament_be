@@ -1,0 +1,17 @@
+<!-- templates/tournament_app/add_player_to_tournament.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Player to Tournament</title>
+</head>
+<body>
+    <h1>Add Player to Tournament</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Player</button>
+    </form>
+</body>
+</html>

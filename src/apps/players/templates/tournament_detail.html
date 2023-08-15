@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tournament Detail</title>
+</head>
+<body>
+    <h1>Tournament Detail: {{ tournament.name }}</h1>
+    <p>Points for win: {{ tournament.points_for_win }}</p>
+    <p>Points for draw: {{ tournament.points_for_draw }}</p>
+    <p>Points for loss: {{ tournament.points_for_loss }}</p>
+    
+    <h2>Players and Scores</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Player</th>
+                <th>Points</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for player_score in player_scores %}
+                <tr>
+                    <td>{{ player_score.player }}</td>
+                    <td>{{ player_score.score }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <h2>Game Results</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Player</th>
+                <th>Match</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for player_score in player_scores %}
+                {% for game_result in player_score.game_results %}
+                    <tr>
+                        <td>{{ player_score.player }}</td>
+                        <td>{{ game_result.match }}</td>
+                        <td>{{ game_result.score }}</td>
+                    </tr>
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
