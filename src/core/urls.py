@@ -9,7 +9,7 @@ from apps.players.views import (
     PlayerViewSet,
     TournamentDetailView,
 )
-from apps.tournament.views import TournamentViewSet
+from apps.tournament.views import TournamentViewSet, PlayerTournamentScorViewSet
 
 router = routers.DefaultRouter()
 
@@ -17,6 +17,7 @@ router = routers.DefaultRouter()
 router.register(r"games", GameViewSet)
 router.register(r"players", PlayerViewSet)
 router.register(r"tournaments", TournamentViewSet)
+router.register(r"tournaments_score", PlayerTournamentScorViewSet)
 router.register(r"matches", MatchViewSet)
 
 urlpatterns = [

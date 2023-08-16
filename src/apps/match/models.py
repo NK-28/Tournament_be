@@ -24,6 +24,9 @@ class Match(models.Model):
         on_delete=models.SET_NULL,
     )
 
+    def __str__(self):
+        return f"{self.player1} vs {self.player2}"
+
     def save(self, *args, **kwargs):
         if self.player1_score > self.player2_score:
             self.winner = self.player1
@@ -35,33 +38,15 @@ class Match(models.Model):
         self.update_player_scores()
 
     def update_player_scores(self):
-        player1_score = (
-            self.tournament.get_points_for_win()
-            if self.winner == self.player1
-            else self.tournament.get_points_for_draw()
-            if self.player1_score == self.player2_score
-            else self.tournament.get_points_for_loss()
-        )
-
-        player2_score = (
-            self.tournament.get_points_for_win()
-            if self.winner == self.player2
-            else self.tournament.get_points_for_draw()
-            if self.player1_score == self.player2_score
-            else self.tournament.get_points_for_loss()
-        )
-
-        PlayerTournamentScore.objects.update_or_create(
-            player=self.player1,
-            tournament=self.tournament,
-            defaults={"points": player1_score},
-        )
-
-        PlayerTournamentScore.objects.update_or_create(
-            player=self.player2,
-            tournament=self.tournament,
-            defaults={"points": player2_score},
-        )
+        if self.winner == self.player1:
+            player1_score = self.tournament.get_points_for_win()
+            player2_score = self.tournament.get_points_for_loss()
+        elif self.winner == self.player2:
+            player1_score = self.tournament.get_points_for_loss()
+            player2_score = self.tournament.get_points_for_win()
+        else:
+            player1_score = self.tournament.get_points_for_draw()
+            player2_score = self.tournament.get_points_for_draw()
 
         GameResult.objects.update_or_create(
             player=self.player1,
@@ -77,12 +62,10 @@ class Match(models.Model):
             defaults={"score": player2_score},
         )
 
-    def __str__(self):
-        return f"{self.player1} vs {self.player2}"
-
 
 class GameResult(models.Model):
     player = models.ForeignKey(Player, on_delete=models.CASCADE)
     tournament = models.ForeignKey(Tournament, on_delete=models.CASCADE)
     match = models.ForeignKey(Match, on_delete=models.CASCADE)
+    game = models.ForeignKey(Game, on_delete=models.CASCADE)
     score = models.PositiveIntegerField(default=0)
