@@ -1,7 +1,8 @@
 from django.contrib import admin
 
-from .models import Tournament, PlayerTournamentScore
 from apps.match.models import Match
+
+from .models import PlayerTournamentScore, Tournament
 
 
 class PlayerTournamentScoreInline(admin.TabularInline):

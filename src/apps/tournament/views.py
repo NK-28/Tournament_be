@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 
-from .models import Tournament, PlayerTournamentScore
-from .serializers import TournamentSerializer, PlayerTournamentScoreSerializer
+from .models import PlayerTournamentScore, Tournament
+from .serializers import PlayerTournamentScoreSerializer, TournamentSerializer
 
 
 class TournamentViewSet(viewsets.ModelViewSet):

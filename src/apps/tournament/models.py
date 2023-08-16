@@ -1,5 +1,5 @@
-from django.db import models
 from django.core.exceptions import ValidationError
+from django.db import models
 
 from apps.game.models import Game
 from apps.players.models import Player
@@ -7,20 +7,20 @@ from apps.players.models import Player
 
 class Tournament(models.Model):
     TOURNAMENT_TYPES = [
-        ('single_elimination', 'Single Elimination'),
-        ('league', 'League'),
+        ("single_elimination", "Single Elimination"),
+        ("league", "League"),
     ]
     name = models.CharField(max_length=100)
     tournament_type = models.CharField(max_length=20, choices=TOURNAMENT_TYPES)
     games = models.ManyToManyField(Game)
     players_count = models.PositiveIntegerField()
-    players = models.ManyToManyField(Player, through='PlayerTournamentScore')
+    players = models.ManyToManyField(Player, through="PlayerTournamentScore")
     points_for_win = models.PositiveIntegerField(default=3)
     points_for_draw = models.PositiveIntegerField(default=1)
     points_for_loss = models.PositiveIntegerField(default=0)
 
-    SINGLE_ELIMINATION = 'single_elimination'
-    LEAGUE = 'league'
+    SINGLE_ELIMINATION = "single_elimination"
+    LEAGUE = "league"
 
     def __str__(self):
         return self.name

@@ -5,7 +5,7 @@ To start project:
 
 **1. Clone project to your directory**
 
-  
+
 
 **2. Create and activate virtualvenv:**
 
@@ -13,13 +13,13 @@ To start project:
 
 	2.2 source venv/bin/activate
 
-  
+
 
 **3. Install requirements:**
 
 	3.1 pip install -r requirements.txt
 
-  
+
 
 **4. In folder with file 'manage.py' run command:**
 

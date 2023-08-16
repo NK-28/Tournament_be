@@ -4,27 +4,28 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('users', '0002_user_created_at_user_role_user_updated_at_and_more'),
+        ("users", "0002_user_created_at_user_role_user_updated_at_and_more"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='user',
-            name='created_at',
+            model_name="user",
+            name="created_at",
         ),
         migrations.RemoveField(
-            model_name='user',
-            name='role',
+            model_name="user",
+            name="role",
         ),
         migrations.RemoveField(
-            model_name='user',
-            name='updated_at',
+            model_name="user",
+            name="updated_at",
         ),
         migrations.AlterField(
-            model_name='user',
-            name='email',
-            field=models.EmailField(blank=True, max_length=254, verbose_name='email address'),
+            model_name="user",
+            name="email",
+            field=models.EmailField(
+                blank=True, max_length=254, verbose_name="email address"
+            ),
         ),
     ]
